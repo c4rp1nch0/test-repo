@@ -18,7 +18,7 @@ jobs:
 
       - name: check secret
         run: |
-          if "${{ secrets.MYORGSECRET }}" == "42"; then
+          if [ "${{ secrets.MYORGSECRET }}" = "42" ]; then
             exit 0
           else
             exit 1
