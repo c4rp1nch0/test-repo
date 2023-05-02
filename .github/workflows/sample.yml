@@ -1,0 +1,25 @@
+name: 'Secret Workflow'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  secret-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout this repo
+        uses: actions/checkout@v3
+
+      - name: check secret
+        run: |
+          if "${{ secrets.MYORGSECRET }}" == "42"; then
+            exit 0
+          else
+            exit 1
+          fi
